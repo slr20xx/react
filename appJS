@@ -18,6 +18,10 @@ function App() {
         background: colored,
         height: `${change}vmin`
     };
+    const buttonStyle={
+        display:!isNaN(color)?'none':'block',
+        background:color
+    }
     const backgroundStyle = {
         background: colored
     };
@@ -29,8 +33,8 @@ function App() {
             <header className="App-header">
                 <nav className="nav">
                     <ul>
-                        <button onClick={() => setColored(color)}>
-                            {color}
+                        <button style={buttonStyle} onClick={() => setColored(color)}>
+                            Click On Me
                         </button>
                         <button onClick={() => setChange(change + 5)}>
                             bigger
