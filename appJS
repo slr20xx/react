@@ -1,0 +1,62 @@
+import React, { useState } from "https://cdn.skypack.dev/react@17.0.1";
+import ReactDOM from "https://cdn.skypack.dev/react-dom@17.0.1";
+
+const logoSrc =
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png";
+
+function App() {
+    const [color, setColor] = useState("click");
+    const [colored, setColored] = useState("grey");
+    const [handle, setHandle] = useState();
+    const [change, setChange] = useState(40);
+    const [moving, setMoving] = useState(0);
+
+    const liStyle = {
+        
+        left: `${moving}px`,
+        animation: `App-logo-spin infinite ${color}s linear`,
+        background: colored,
+        height: `${change}vmin`
+    };
+    const backgroundStyle = {
+        background: colored
+    };
+    const onmouseoverr = () => {
+        setMoving(moving - 10);
+    };
+    return (
+        <div style={backgroundStyle} className="App">
+            <header className="App-header">
+                <nav className="nav">
+                    <ul>
+                        <button onClick={() => setColored(color)}>
+                            {color}
+                        </button>
+                        <button onClick={() => setChange(change + 5)}>
+                            bigger
+                        </button>
+                        <button onClick={() => setChange(change - 5)}>
+                            smaller
+                        </button>
+                        <button onClick={() => setMoving(moving + 10)}>
+                            go to right
+                        </button>
+                        <li onMouseOver={onmouseoverr}>go to left</li>
+                    </ul>
+                </nav></header>
+                <div class="logoAndControl"><img
+                    style={liStyle}
+                    src={logoSrc}
+                    className="App-logo"
+                    alt="logo"
+                />
+
+                <p>Type color then click on first button or put number to start rotation</p>
+                    <p>Greater number slower it goes!!!</p>
+                <input onChange={(e) => setColor(e.target.value)} />
+            </div>  
+        </div>
+    );
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
